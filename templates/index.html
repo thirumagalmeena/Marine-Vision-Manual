@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marine Animal Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-fish"></i> Marine Animal Detection System</h1>
+            <p>Upload an image of a marine animal to identify the species using 5 different machine learning algorithms</p>
+            <div class="species-badges">
+                <div class="badge"><i class="fas fa-fish"></i> Dolphin</div>
+                <div class="badge"><i class="fas fa-fish"></i> Fish</div>
+                <div class="badge"><i class="fas fa-fish"></i> Lobster</div>
+                <div class="badge"><i class="fas fa-fish"></i> Octopus</div>
+                <div class="badge"><i class="fas fa-fish"></i> Sea Horse</div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h2 class="section-title">Upload Marine Animal Image</h2>
+                
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Click to Upload or Drag & Drop</h3>
+                        <p>Supported formats: JPG, PNG, JPEG (Max 5MB)</p>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <button class="btn btn-browse" id="browse-btn">
+                            <i class="fas fa-folder-open"></i> Browse Files
+                        </button>
+                    </div>
+                </div>
+
+                <div class="image-preview" id="image-preview">
+                    <img id="preview-img" src="" alt="Preview">
+                    <button class="btn-remove" id="remove-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <button class="btn btn-analysis" id="analyze-btn" disabled>
+                    <i class="fas fa-search"></i> Analyze with All Models
+                </button>
+
+                <div class="file-info" id="file-info">
+                    <p><i class="fas fa-info-circle"></i> No file selected</p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <h2 class="section-title">Analysis Results</h2>
+                
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Processing image with 5 machine learning models...</p>
+                    <div class="model-progress">
+                        <div class="model-loading">CNN Model</div>
+                        <div class="model-loading">SVM Model</div>
+                        <div class="model-loading">Random Forest</div>
+                        <div class="model-loading">KNN Model</div>
+                        <div class="model-loading">K-means</div>
+                    </div>
+                </div>
+
+                <div class="results-container" id="results-container">
+                    <!-- Main Detection Result -->
+                    <div class="detection-result">
+                        <div class="detection-header">
+                            <div class="animal-info">
+                                <h3 id="detected-animal">Animal Name</h3>
+                                <div class="confidence" id="confidence-level">0%</div>
+                            </div>
+                            <div class="model-badge" id="best-model">CNN</div>
+                        </div>
+                        <p id="animal-description">Description will appear here...</p>
+                        <div class="animal-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Habitat:</span>
+                                <span id="habitat-info">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Conservation:</span>
+                                <span id="conservation-info">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Model Comparison -->
+                    <div class="model-comparison">
+                        <h3>Model Performance Comparison</h3>
+                        <div class="models-grid" id="models-grid">
+                            <!-- Model cards will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- All Species Analysis -->
+                    <div class="species-analysis">
+                        <h3>Confidence Across All Species</h3>
+                        <div class="species-grid" id="species-grid">
+                            <!-- Species cards will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Algorithm Info -->
+                    <div class="algorithm-info">
+                        <h3>Machine Learning Algorithms Used</h3>
+                        <div class="algo-badges">
+                            <span class="algo-badge">Convolutional Neural Network (CNN)</span>
+                            <span class="algo-badge">Support Vector Machine (SVM)</span>
+                            <span class="algo-badge">Random Forest</span>
+                            <span class="algo-badge">K-Nearest Neighbors (KNN)</span>
+                            <span class="algo-badge">K-means Clustering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Marine Animal Detection System &copy; 2023 | Comparative Analysis of Machine Learning Algorithms</p>
+            <p class="timestamp" id="timestamp"></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
